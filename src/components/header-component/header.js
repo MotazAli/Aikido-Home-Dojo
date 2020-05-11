@@ -1,21 +1,33 @@
 import React , {useState,useEffect} from 'react';
-import {Link} from 'react-router-dom';
+import {Link,useLocation } from 'react-router-dom';
 import './header.css';
 import logo from '../../img/logo.png';
 
-export default function Header(props){
+export default function Header(){
 
-    
+  const location = useLocation();
+    console.log(location);
     const [ scrolled, setScrolled ] = useState(false)
     useEffect( () => {
         const handleScroll = () => {
             
-            
-          if (window.pageYOffset > 100) {
-            setScrolled(true)
-          } else {
-            setScrolled(false)
+          if(location.pathname === "/" ){
+            if (window.pageYOffset > 100) {
+              setScrolled(true)
+            } else {
+              setScrolled(false)
+            }
           }
+          else
+          {
+            if (window.pageYOffset > 1) {
+              setScrolled(true)
+            } else {
+              setScrolled(false)
+            }
+          }
+            
+          
         }
         window.addEventListener('scroll', handleScroll)
 

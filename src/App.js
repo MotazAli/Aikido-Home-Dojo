@@ -3,6 +3,8 @@ import {BrowserRouter as Router , Switch,Route } from 'react-router-dom';
 import Header from './components/header-component/header';
 import Home from './components/home-component/home';
 import Team from './components/team-component/Team';
+import Footer from './components/footer-component/footer';
+
 
 function App() {
 
@@ -15,8 +17,12 @@ function App() {
         <Header/>
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/team" exact component={Team} />
+          <React.Fragment>
+            <section id="top-edge"></section>
+            <Route path="/team" exact component={Team} />
+          </React.Fragment>
         </Switch>
+        <Footer/>
       </Router>
 
 

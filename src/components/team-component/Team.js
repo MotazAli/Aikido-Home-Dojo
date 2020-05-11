@@ -2,7 +2,14 @@ import React from 'react';
 
 const Team=()=>{
     return (
-        <label>Team Page</label>
+        <React.Fragment>
+            <div id="singel-page">
+            <div>
+                <h1>Team Page</h1>
+            </div>
+            </div>
+        </React.Fragment>
+
     );
 }
 
