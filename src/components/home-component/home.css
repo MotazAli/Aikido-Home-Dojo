@@ -20,6 +20,41 @@
     left: 0;
     right: 0;
   }
+
+
+  
+  #overlay_elsaid {
+    width: 100%;
+    height: 90vh;
+    background: url( ../../img/said_master/s2.jpg) top center;
+    background-size: cover;
+    overflow: hidden;
+    position: relative;
+  }
+
+  #overlay_mostafa  {
+    width: 100%;
+    height: 90vh;
+    background: url( ../../img/mm_master/m6.jpg) top center;
+    background-size: cover;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  #overlay_elsaid:before, #overlay_mostafa:before {
+    content: "";
+    background: rgba(6, 12, 34, 0.52);
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+
+  
+  
+  
+
   
   #intro .intro-container {
     position: absolute;
@@ -190,9 +225,11 @@
   
 
   @media (min-width: 1024px) {
-    #intro {
+    #intro , #overlay_elsaid , #overlay_mostafa {
       background-attachment: fixed;
     }
+
+    
   
     #about {
       background-attachment: fixed;
@@ -206,4 +243,54 @@
 
   #quoting{
     quotes:"„" "“";
+  }
+
+
+  #overlay_img{
+    width: -webkit-fill-available;
+  }
+
+  #overlay {
+    border-radius: 15px;
+    background-size: cover;
+    height: auto;
+    width: auto;
+    overflow: hidden;
+    position: relative;
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.40);
+  }
+
+  #overlay:before {
+    content: "";
+    background: rgba(6, 12, 34, 0.4);
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+
+
+
+
+
+
+  #overlay_break {
+    
+    background-size: cover;
+    height: auto;
+    width: auto;
+    overflow: hidden;
+    position: relative;
+  }
+
+  #overlay_break:before {
+    content: "";
+    background: rgba(6, 12, 34, 0.65);
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
   }

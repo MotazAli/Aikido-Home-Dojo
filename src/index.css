@@ -151,7 +151,7 @@ h6 {
 
 .section-header h2 {
   font-size: 36px;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   text-align: center;
   font-weight: 700;
   margin-bottom: 10px;
@@ -1318,7 +1318,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 /*--------------------------------------------------------------
 # Contact Section
 --------------------------------------------------------------*/
-
+/* 
 #contact {
   padding: 60px 0;
 }
@@ -1417,7 +1417,12 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 #contact .form button[type="submit"]:hover {
   background: #e0072f;
+  
 }
+
+#contact .form button[type="submit"]:focus {
+  outline:0;
+} */
 
 /*--------------------------------------------------------------
 # Footer

@@ -153,7 +153,8 @@
 .nav-menu li.buy-tickets a {
   color: #fff;
   /* background: #f82249; */
-  background: #ea1b21;
+  /* background: #ea1b21; */
+  background: #000000;
   padding: 7px 22px;
   border-radius: 50px;
   /* border: 2px solid #f82249; */
@@ -169,7 +170,8 @@
 }
 
 .nav-menu li.buy-tickets a:hover {
-  background: none;
+  /* background: none; */
+  background: #3d3d3d;
 }
 
 .nav-menu li.buy-tickets:hover a:before,

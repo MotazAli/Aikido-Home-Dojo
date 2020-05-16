@@ -56,11 +56,11 @@ export default function Header(){
           {/* <li className="menu-active"> <Link to="/">Home</Link></li> */}
           <li> <Link to="/">Home</Link></li>
           <li> <Link to="/team">Team</Link></li>
-          <li><a href="#articles">Articles</a></li>
-          <li><a href="#schedule">Schedule</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><Link to="/schedule">Schedule</Link></li>
           <li><a href="#online">Online</a></li>
           <li><a href="#gallery">Gallery</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><Link to="/contact">Contact</Link></li>
           <li className="buy-tickets"><a href="#buy-tickets">Register</a></li>
         </ul>
       </nav>
