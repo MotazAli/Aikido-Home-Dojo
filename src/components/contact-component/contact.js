@@ -46,7 +46,8 @@ const handleClick=(event)=>{
 
 
     return (
-        <section id="contact" className="section-bg wow fadeInUp">
+      //wow fadeInUp
+        <section id="contact" className="section-bg ">
 
       <div className="container">
 

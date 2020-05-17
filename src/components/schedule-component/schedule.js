@@ -28,7 +28,8 @@ useEffect(()=>{
 
 
     return (
-        <section id="supporters" className="section-with-bg wow fadeInUp">
+        //wow fadeInUp
+        <section id="supporters" className="section-with-bg  main-body">
             <div className="container">
                 <div className="section-header">
                     <h2>Schedule</h2>

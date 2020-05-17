@@ -74,15 +74,17 @@ h6 {
   /* margin-top: 80px; */
 }
 
-
+section.main-body{
+  min-height: 100vh;
+}
 
 .main-page {
   margin-top: 70px;
 }
 
-.wow {
+/* .wow {
   visibility: hidden;
-}
+} */
 
 /* Prelaoder */
 

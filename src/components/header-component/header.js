@@ -6,7 +6,7 @@ import logo from '../../img/logo.png';
 export default function Header(){
 
   const location = useLocation();
-    console.log(location);
+    
     const [ scrolled, setScrolled ] = useState(false)
     useEffect( () => {
         const handleScroll = () => {

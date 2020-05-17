@@ -1,23 +1,29 @@
-import React from 'react';
+import React ,{PureComponent} from 'react';
 import './footer.css';
 
-const Footer=()=>{
+class Footer extends PureComponent{
+
+
+  render(){
     return (
-        <footer id="footer">
+      <footer id="footer">
 
 
-    <div className="container">
-      <div className="copyright">
-        &copy; Copyright on <strong>Mohamed Mostafe</strong>. All Rights Reserved
-      </div>
-      <div className="credits">
-        
-        Designed by M A - <a href="#Aion">Aion Company</a>
-      </div>
+  <div className="container">
+    <div className="copyright">
+      &copy; Copyright on <strong>Mohamed Mostafe</strong>. All Rights Reserved
     </div>
-  </footer>
+    <div className="credits">
+      
+      Designed by M A - <a href="#Aion">Aion Company</a>
+    </div>
+  </div>
+</footer>
 
-    );
+  );
+  }
+
+    
 }
 
 export default Footer;
