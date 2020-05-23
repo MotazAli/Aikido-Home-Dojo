@@ -1,0 +1,2 @@
+export const CONTACT = "CONTACT";
+export const SEND_CONTACT_MESSAGE = "SEND_CONTACT_MESSAGE";

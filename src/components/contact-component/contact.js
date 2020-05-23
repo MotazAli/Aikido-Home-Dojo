@@ -1,113 +1,148 @@
-import React,{useEffect,useState,useRef} from 'react';
+import React from 'react';
+// import axios from '../../server/axios';
+import {connect} from 'react-redux';
+
+import * as ActionCreators from '../../store/actionCreators';
 import './contact.css';
 import WOW from 'wowjs';
-const Contact=()=>{
+class Contact extends React.Component{
 
-const nameInput = useRef("");
-const emailInput = useRef("");
-const subjectInput = useRef("");
-const messageInput = useRef("");
-const [contact,setContact] = useState({});
 
-useEffect(()=>{
-    new WOW.WOW().init();
-    fetch('http://localhost:2404/Contacts/Contact',
-      {method:'get',
-      headers:{'Content-Type':'application/json'}
-    }).then((res)=>{
-      return res.json();
-    }).then((data)=>{
-      if(data !==null && data !== undefined){
-        setContact(data);
-      }
-    });
-},[]);
+  state ={
+    Name:"",
+    Email:"",
+    Subject:"",
+    Message:""
+  }
 
-const handleClick=(event)=>{
-  let messageObj ={};
-  messageObj.Name = nameInput.current.value;
-  messageObj.Email = emailInput.current.value;
-  messageObj.Subject = subjectInput.current.value;
-  messageObj.Message = messageInput.current.value;
 
-  fetch('http://localhost:2404/ContactMessage/Message', {
-    method: 'post',
-    headers: {'Content-Type':'application/json'},
-    body: JSON.stringify(messageObj)
- }).then((res)=>{
-   return res.json();
- }).then((data)=>{ 
-   console.log(data);
-   alert(data);
-  });
 
+componentDidMount(){
+  new WOW.WOW().init();
+  this.props.getContact();
+}
+
+onNameChangeHandler = event =>{
+  this.setState({Name:event.target.value});
+}
+onEmailChangeHandler = event =>{
+  this.setState({Email:event.target.value});
+}
+onSubjectChangeHandler = event =>{
+  this.setState({Subject:event.target.value});
+}
+onMessageChangeHandler = event =>{
+  this.setState({Message:event.target.value});
+}
+
+
+ handleClick= event =>{
+  this.props.sendContactMessage(this.state);
 };
 
 
 
-    return (
-      //wow fadeInUp
-        <section id="contact" className="section-bg ">
+render(){
 
-      <div className="container">
+  let message = null;
+  if(this.props.messageSentResult){
+    message = <h2>Message sent</h2>
+  }
 
-        <div className="section-header">
-          <h2>Contact Us</h2>
-          
-        </div>
-
-        <div className="row contact-info">
-
-          <div className="col-md-6">
-            <div className="contact-address">
-              <i className="ion-ios-telephone-outline"></i>
-              <h3>Phone Number</h3>
-    <p>{contact.Name}</p>
-    <p><a href={`tel:${contact.Phone}`}>{contact.Phone}</a></p>
-            </div>
-          </div>
-
-          <div className="col-md-6">
-            <div className="contact-email">
-              <i className="ion-ios-email-outline"></i>
-              <h3>Email</h3>
-    <p><a href={`mailto:${contact.Email}`}>{contact.Email}</a></p>
-            </div>
-          </div>
-
-        </div>
-
-        <div className="form">
-          <div id="sendmessage">Your message has been sent. Thank you!</div>
-          <div id="errormessage"></div>
-          <div action=""  className="contactForm">
-            <div className="form-row">
-              <div className="form-group col-md-6">
-                <input type="text" ref={nameInput} name="name" className="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-                <div className="validation"></div>
-              </div>
-              <div className="form-group col-md-6">
-                <input type="email" ref={emailInput} className="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
-                <div className="validation"></div>
+  let contact = null;
+  if(this.props.contact)
+  {
+    contact = (
+      <>
+      <div className="col-md-6">
+              <div className="contact-address">
+                <i className="ion-ios-telephone-outline"></i>
+                <h3>Phone Number</h3>
+      <p>{this.props.contact.Name}</p>
+      <p><a href={`tel:${this.props.contact.Phone}`}>{this.props.contact.Phone}</a></p>
               </div>
             </div>
-            <div className="form-group">
-              <input type="text" ref={subjectInput} className="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
-              <div className="validation"></div>
-            </div>
-            <div className="form-group">
-              <textarea ref={messageInput} className="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
-              <div className="validation"></div>
-            </div>
-            <div className="text-center"><button onClick={handleClick} type="submit">Send Message</button></div>
-          </div>
-        </div>
 
-      </div>
-    </section>
-
+            <div className="col-md-6">
+              <div className="contact-email">
+                <i className="ion-ios-email-outline"></i>
+                <h3>Email</h3>
+      <p><a href={`mailto:${this.props.contact.Email}`}>{this.props.contact.Email}</a></p>
+              </div>
+            </div>
+      </>
     );
+  }
+
+
+
+
+      return (
+        //wow fadeInUp
+          <section id="contact" className="section-bg ">
+
+        <div className="container">
+
+          <div className="section-header">
+            <h2>Contact Us</h2>
+            
+          </div>
+
+          <div className="row contact-info">
+
+            {contact}
+
+          </div>
+
+          <div className="form">
+            <div id="sendmessage">Your message has been sent. Thank you!</div>
+            <div id="errormessage"></div>
+            <div action=""  className="contactForm">
+              <div className="form-row">
+                <div className="form-group col-md-6">
+                  <input type="text" value={this.state.Name} onChange={this.onNameChangeHandler}  name="name" className="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                  <div className="validation"></div>
+                </div>
+                <div className="form-group col-md-6">
+                  <input type="email" value={this.state.Email} onChange={this.onEmailChangeHandler} className="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                  <div className="validation"></div>
+                </div>
+              </div>
+              <div className="form-group">
+                <input type="text" value={this.state.Subject} onChange={this.onSubjectChangeHandler} className="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                <div className="validation"></div>
+              </div>
+              <div className="form-group">
+                <textarea value={this.state.Message} onChange={this.onMessageChangeHandler} className="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+                <div className="validation"></div>
+              </div>
+              <div className="text-center"><button onClick={this.handleClick}  type="submit">Send Message</button></div>
+              {message}
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      );
+  }
+}
+
+const mapStateToProps = state =>{
+  return {
+    contact : state.contact,
+    messageSentResult: state.contactMessageSendResult
+  }
+}
+
+const mapDispatchToProps= dispatch =>{
+  return {
+    getContact : () => dispatch(ActionCreators.getContact()),
+    sendContactMessage : (data) => dispatch(ActionCreators.sendContactMessage(data))
+  }
 }
 
 
-export default Contact;
+
+const setConnect = connect(mapStateToProps,mapDispatchToProps);
+export default setConnect(Contact);
