@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createStore , applyMiddleware} from 'redux';
+import {createStore , applyMiddleware , combineReducers } from 'redux';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 
@@ -12,9 +12,10 @@ import './lib/venobox/venobox.css';
 import './lib/owlcarousel/assets/owl.carousel.min.css';
 import App from './App';
 import reducer from './store/reducers';
+import authReducer from './store/auth_store/reducer';
 
-
-const store = createStore(reducer,applyMiddleware(thunk));
+const rootReducer = combineReducers({main : reducer , auth: authReducer });
+export const store = createStore(rootReducer,applyMiddleware(thunk));
 
 
 

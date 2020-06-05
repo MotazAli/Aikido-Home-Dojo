@@ -1,29 +1,52 @@
-import React,{useEffect, useState} from 'react';
+import React from 'react';
+import {connect} from 'react-redux';
+
+import * as ActionCreators from '../../store/actionCreators';
 import WOW from 'wowjs';
 import './schedule.css';
-import {getScheduleDOM} from './utility';
+import Cell from './Cell';
 
 
 
-const Schedule=()=>{
+class Schedule extends React.Component{
 
-    const hosting = "http://localhost:2404";
-    const [schedule,setSchedule] = useState(getScheduleDOM(null));
+    hosting = "http://localhost:2404";
+    schedulePath = "/assets/schedule/";
+    state ={
+        schedule:null
+    }
 
 
-useEffect(()=>{
-    new WOW.WOW().init();
-    fetch(`${hosting}/Schedules`,
-      {method:'get',
-      headers:{'Content-Type':'application/json'}
-    }).then((res)=>{
-      return res.json();
-    }).then((data)=>{
-      if(data !==null && data !== undefined){
-        setSchedule(getScheduleDOM(data)); 
-      }
-    });
-},[]);
+    componentDidMount(){
+        new WOW.WOW().init();
+        this.props.getSchedule();
+    }
+
+
+
+    render(){
+
+
+        let renderSchedule = [];
+        if(this.props.schedule ){
+            Object.entries(this.props.schedule).forEach(([key,value])=>{ 
+                if(value.data !== null && value.data.length > 0)
+                {
+                    renderSchedule.push((<Cell key={value.id} IsHeader={true} HeaderName={key} />));
+
+                     let temp = value.data.map((day)=>{
+                        return <Cell key={day.ID} IsHeader={false} 
+                            Image={`${this.hosting}${this.schedulePath}${day.Image}`}
+                            Details={` ${day.Place} ${day.TeamType.Name} start ${day.StartTime} to ${day.EndTime}  `} />;
+                    });
+
+                    renderSchedule.push(temp);
+                }
+
+            });
+
+        }
+
 
 
 
@@ -36,172 +59,28 @@ useEffect(()=>{
                 </div>
         
                 <div className="row no-gutters supporters-wrap clearfix">
-
-                    {schedule.SATURDAY.header}
-                    {schedule.SATURDAY.body}
-                    {schedule.SUNDAY.header}
-                    {schedule.SUNDAY.body}
-                    {schedule.MONDAY.header}
-                    {schedule.MONDAY.body}
-                    {schedule.TUESDAY.header}
-                    {schedule.TUESDAY.body}
-                    {schedule.WEDNESDAY.header}
-                    {schedule.WEDNESDAY.body}
-                    {schedule.THURSDAY.header}
-                    {schedule.THURSDAY.body}
-                    {schedule.FRIDAY.header}
-                    {schedule.FRIDAY.body}
-
-{/* 
-                    <div className="col-lg-3 col-md-4 col-xs-6">
-                    <div className="supporter-logo">
-                        <p>Saturday</p>
-                    </div>
-                    </div>
-                    
-                    <div className="col-lg-3 col-md-4 col-xs-6">
-                    <div className="supporter-logo row">
-                        <img src={CUBS_ACADEMY} className="img-fluid" alt=""/>
-                        <div className="row">
-                        <p>Kids Start 7:00 PM to 8:30 PM </p>
-                        </div>
-                        
-                    </div>
-                    </div>
-                
-                    <div className="col-lg-3 col-md-4 col-xs-6">
-                    <div className="supporter-logo">
-                        
-                    </div>
-                    </div>
-                    
-                    <div className="col-lg-3 col-md-4 col-xs-6">
-                    <div className="supporter-logo row">
-                        <img src={CUBS_ACADEMY} className="img-fluid" alt=""/>
-                        <div className="row">
-                        <p>Adults Start 9:00 PM to 10:30 PM </p>
-                        </div>
-                    </div>
-                    
-                    </div>
-
-
-                    <div className="col-lg-3 col-md-4 col-xs-6">
-                    <div className="supporter-logo">
-                        <p>Monday</p>
-                    </div>
-                    </div>
-                    
-                    <div className="col-lg-3 col-md-4 col-xs-6">
-                    <div className="supporter-logo row">
-                        <img src={YOUTH_CENTER} className="img-fluid" alt=""/>
-                        <div className="row">
-                        <p>Abden Youth Center Kids Start 7:00 PM to 8:00 PM </p>
-                        </div>
-                        
-                    </div>
-                    
-                    </div>
-                
-                    <div className="col-lg-3 col-md-4 col-xs-6">
-                    <div className="supporter-logo">
-                        
-                    </div>
-                    </div>
-                    
-                    <div className="col-lg-3 col-md-4 col-xs-6">
-                    <div className="supporter-logo row">
-                        <img src={YOUTH_CENTER} className="img-fluid" alt=""/>
-                        <div className="row">
-                        <p>Abden Youth Center Adults Start 8:00 PM to 9:00 PM </p>
-                        </div>
-                    </div>
-                    
-                    </div>
-                    
-
-
-
-
-
-
-
-
-                    
-                    <div className="col-lg-3 col-md-4 col-xs-6">
-                    <div className="supporter-logo">
-                         <p>Wednesday</p>
-                    </div>
-                    </div>
-                
-                    <div className="col-lg-3 col-md-4 col-xs-6">
-                    <div className="supporter-logo row">
-                        <img src={CUBS_ACADEMY} className="img-fluid" alt=""/>
-                        <div className="row">
-                        <p>Kids Start 7:00 PM to 8:30 PM </p>
-                        </div>
-                        
-                    </div>
-                    </div>
-                    
-                    <div className="col-lg-3 col-md-4 col-xs-6">
-                    <div className="supporter-logo">
-                        
-                    </div>
-                    </div>
-                    
-                    <div className="col-lg-3 col-md-4 col-xs-6">
-                    <div className="supporter-logo row">
-                        <img src={CUBS_ACADEMY} className="img-fluid" alt=""/>
-                        <div className="row">
-                        <p>Adults Start 9:00 PM to 10:30 PM </p>
-                        </div>
-                    </div>
-                    </div>
-
-
-                    <div className="col-lg-3 col-md-4 col-xs-6">
-                    <div className="supporter-logo">
-                        <p>Friday</p>
-                    </div>
-                    </div>
-                    
-                    <div className="col-lg-3 col-md-4 col-xs-6">
-                    <div className="supporter-logo row">
-                        <img src={YOUTH_CENTER} className="img-fluid" alt=""/>
-                        <div className="row">
-                        <p>Abden Youth Center Kids Start 4:00 PM to 5:00 PM </p>
-                        </div>
-                        
-                    </div>
-                    
-                    </div>
-                
-                    <div className="col-lg-3 col-md-4 col-xs-6">
-                    <div className="supporter-logo">
-                        
-                    </div>
-                    </div>
-                    
-                    <div className="col-lg-3 col-md-4 col-xs-6">
-                    <div className="supporter-logo row">
-                        <img src={YOUTH_CENTER} className="img-fluid" alt=""/>
-                        <div className="row">
-                        <p>Abden Youth Center Adults Start 5:00 PM to 6:00 PM </p>
-                        </div>
-                    </div>
-                    
-                    </div>
-                     */}
-
-
-        
+                    {renderSchedule}
                 </div>
     
             </div>
             
         </section>
     );
+    }
 };
 
-export default Schedule;
+let mapStateToProps = state =>{
+    return {
+        schedule : state.main.schedule
+    }
+}
+
+let mapDispatchToProps = dispatch =>{
+    return {
+        getSchedule : ()=> dispatch(ActionCreators.getSchedule())
+    }
+}
+
+
+const setConnect = connect(mapStateToProps,mapDispatchToProps);
+export default setConnect( Schedule);

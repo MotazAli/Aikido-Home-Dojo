@@ -1,0 +1,7 @@
+section .main-body{
+    min-height: 100vh;
+  }
+
+.main-body .container{
+    padding-top: 30px;
+  }

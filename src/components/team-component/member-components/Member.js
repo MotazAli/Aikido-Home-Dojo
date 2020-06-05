@@ -1,13 +1,13 @@
 import React from 'react';
-import './Team.css';
-import motaz from '../../img/motaz.jpg';
+import './Member.css';
+import motaz from '../../../img/motaz.jpg';
 
 const Member=()=>{
 
     return (
 
-        
-        <div className="col-lg-4 margin-cell ">
+      // col-lg-4
+        <div className="col-lg-3 margin-cell ">
         <div className="card mb-5 mb-lg-0">
           <div className="card-body">
               <img src={motaz} alt="motaz" />
@@ -24,7 +24,8 @@ const Member=()=>{
             </ul> */}
             {/* <hr/> */}
             <div className="text-center">
-              <button type="button" className="btn" data-toggle="modal" data-target="#buy-ticket-modal" data-ticket-type="standard-access">Buy Now</button>
+              <p> <b>Motaz Ali Ahmed</b> </p>
+              {/* <button type="button" className="btn" data-toggle="modal" data-target="#buy-ticket-modal" data-ticket-type="standard-access">Buy Now</button> */}
             </div>
           </div>
         </div>

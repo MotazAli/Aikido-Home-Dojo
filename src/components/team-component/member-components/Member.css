@@ -3,7 +3,7 @@
 --------------------------------------------------------------*/
 
 
-/* 
+
 
 
 .card-body {
@@ -17,47 +17,63 @@
 
   .card-body img {
     height: 400px;
+    /* width: 288px; */
     width: 208px;
     border-radius: 15px;
   }
 
-#buy-tickets {
+#members {
     padding: 60px 0;
   }
   
-  #buy-tickets .card {
+  #members .card {
+    /* border: none; */
+    /* border-radius: 5px; */
     height: 430px;
     border: 1px saddlebrown black;
     border-radius: 15px;
     transition: all  0.3s ease-in-out;
+    /* transition: height .10s  ,box-shadow 0.3s ease-in-out;
+    -webkit-transition: height .30s ,-webkit-text-fill-color .30s ,box-shadow 0.3s ease-in-out; */
     box-shadow: 0 10px 25px 0 rgba(6, 12, 34, 0.3);
+    /* text-decoration-color: transparent; */
+    /* -webkit-background-clip:text; */
+    /* -webkit-text-fill-color:transparent; */
   }
   
-  #buy-tickets .card:hover {
+  #members .card:hover {
+    /* box-shadow: 0 10px 35px 0 rgba(6, 12, 34, 0.2); */
     box-shadow: 0 10px 35px 0 rgba(6, 12, 34, 0.5);
+    /* height: 430px; */
+    /* -webkit-background-clip:text; */
+    /* -webkit-text-fill-color:unset; */
   }
   
-  #buy-tickets .card .card-title {
+  /* #buy-tickets .card hr {
+    margin: 25px 0;
+  } */
+  
+  #members .card .card-title {
     margin: 10px 0;
     font-size: 14px;
     letter-spacing: 1px;
     font-weight: bold;
   }
   
-  #buy-tickets .card .card-price {
+  #members .card .card-price {
     font-size: 48px;
     margin: 0;
   }
   
-  #buy-tickets .card ul li {
+  #members .card ul li {
     margin-bottom: 20px;
   }
   
-  #buy-tickets .card .text-muted {
+  #members .card .text-muted {
     opacity: 0.7;
   }
   
-  #buy-tickets .card .btn {
+  #members .card .btn {
     font-size: 15px;
     border-radius: 50px;
     padding: 10px 40px;
@@ -67,16 +83,16 @@
     color: #fff;
   }
   
-  #buy-tickets .card .btn:hover {
+  #members .card .btn:hover {
     background-color: #e0072f;
   }
   
-  #buy-tickets #buy-ticket-modal input,
-  #buy-tickets #buy-ticket-modal select {
+  #members #buy-ticket-modal input,
+  #members #buy-ticket-modal select {
     border-radius: 0;
   }
   
-  #buy-tickets #buy-ticket-modal .btn {
+  #members #buy-ticket-modal .btn {
     font-size: 15px;
     border-radius: 50px;
     padding: 10px 40px;
@@ -86,7 +102,7 @@
     color: #fff;
   }
   
-  #buy-tickets #buy-ticket-modal .btn:hover {
+  #members #buy-ticket-modal .btn:hover {
     background-color: #e0072f;
   }
 
@@ -94,4 +110,4 @@
   .margin-cell{
       margin-top: 50px;
   }
-   */
+  
